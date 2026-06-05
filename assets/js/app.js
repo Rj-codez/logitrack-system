@@ -124,10 +124,10 @@ window.logout = function () {
         timestamp: Date.now()
     });
 
-    savePackages();
+    syncStorage(); // ✅ FIXED
 
     sessionStorage.removeItem("isLoggedIn");
-    sessionStorage.removeItem("loginTime");  
+    sessionStorage.removeItem("loginTime");
 
     window.location.replace("index.html");
 };
