@@ -23,4 +23,10 @@ export class Queue {
     size() {
         return this.items.length;
     }
+
+    setItems(items) {
+    this.items = items || [];
+    }
 }
+
+
