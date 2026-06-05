@@ -369,3 +369,30 @@ function showLoginFeedback(type, message) {
 
     text.textContent = message;
 }
+
+function initPage() {
+
+    console.log("INIT PAGE RUNNING");
+
+    const page = window.location.pathname;
+
+    console.log("CURRENT PAGE:", page);
+
+    if (page.includes("02-dashboard.html")) {
+
+        console.log("DASHBOARD DETECTED");
+
+        updateDashboard();
+        renderLogs();
+        renderRecentUpdates();
+    }
+
+    if (page.includes("06-all-packages.html")) {
+        loadAllPackages();
+        updateFilterTitle();
+    }
+
+    if (page.includes("07-history.html")) {
+        loadHistory();
+    }
+}
