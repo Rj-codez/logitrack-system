@@ -23,6 +23,7 @@ const SESSION_DURATION = 500 * 60 * 1000; // 30 minutes
 
 let packageToDelete = null;
 
+
 function handleRouteProtection() {
 
     const page = window.location.pathname;
@@ -359,7 +360,17 @@ function initPage() {
     }
 }
 
+
+let isBooting = false;
+
 function boot() {
+
+    if (isBooting) return;
+
+    isBooting = true;
+
+    console.log("🚀 BOOT START");
+
     initState();
     handleRouteProtection();
     setupAuth();
@@ -367,7 +378,13 @@ function boot() {
     setupUIEvents();
     initPage();
     startSessionWatcher();
+
+    isBooting = false;
 }
 
 document.addEventListener("DOMContentLoaded", boot);
-window.addEventListener("pageshow", boot);
+
+window.addEventListener("pageshow", () => {
+    console.log("🔁 pageshow triggered");
+    boot();
+});
