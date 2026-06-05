@@ -33,7 +33,8 @@ export function processNextPackage() {
     });
 
     syncStorage();
-
+    renderApp();
+    
     return next;
 }
 
@@ -70,16 +71,15 @@ export function addPackage(pkg) {
         timestamp: Date.now()
     });
 
-    // 💾 5. SAVE TO LOCALSTORAGE
-   syncStorage();
+        syncStorage();
+        renderApp();   // 🔥 THIS IS THE MISSING PIECE
+        
+        showToast(
+            `Package ${trackingNumber} added successfully`,
+            "success"
+        );
 
-    // 🎉 6. SUCCESS FEEDBACK
-    showToast(
-        `Package ${trackingNumber} added successfully`,
-        "success"
-    );
-
-    return true;
+return true;
 }
 
 export function updateStatus(trackingNumber, newStatus) {
@@ -106,6 +106,7 @@ export function updateStatus(trackingNumber, newStatus) {
     });
 
     syncStorage();
+    renderApp();   
 
     return true;
 }
@@ -128,7 +129,8 @@ export function deletePackage(trackingNumber) {
     delete AppState.packages[trackingNumber];
 
     syncStorage();
-
+    renderApp(); 
+    
     return true; // ✅ SUCCESS
 }
 
