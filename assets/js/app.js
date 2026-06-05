@@ -23,21 +23,6 @@ const SESSION_DURATION = 500 * 60 * 1000; // 30 minutes
 
 let packageToDelete = null;
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    initState();
-
-    handleRouteProtection();
-
-    setupAuth();
-    setupPackageEvents();
-    setupUIEvents();
-
-    initPage();
-
-    startSessionWatcher();
-});
-
 function handleRouteProtection() {
 
     const page = window.location.pathname;
@@ -287,30 +272,6 @@ function setupUIEvents() {
     });
 }
 
-function initPage() {
-
-    console.log("Current page:", window.location.pathname);
-
-    const page = window.location.pathname;
-
-    // Dashboard
-    if (page.includes("02-dashboard.html")) {
-        updateDashboard();
-        renderLogs();
-        renderRecentUpdates();
-    }
-
-    // All Packages
-    if (page.includes("06-all-packages.html")) {
-        loadAllPackages();
-        updateFilterTitle();
-    }
-    //History load
-    if (page.includes("07-history.html")) {
-    loadHistory();
-    }
-}
-
 function startSessionWatcher() {
 
     setInterval(() => {
@@ -398,6 +359,15 @@ function initPage() {
     }
 }
 
-window.addEventListener("pageshow", () => {
+function boot() {
+    initState();
+    handleRouteProtection();
+    setupAuth();
+    setupPackageEvents();
+    setupUIEvents();
     initPage();
-});
+    startSessionWatcher();
+}
+
+document.addEventListener("DOMContentLoaded", boot);
+window.addEventListener("pageshow", boot);
