@@ -1,6 +1,5 @@
 import { AppState } from "./state.js";
 
-
 const STORAGE_KEY = "logitrack_packages";
 const HISTORY_KEY = "logitrack_history";
 
@@ -18,21 +17,17 @@ export function initState() {
         ? JSON.parse(savedHistory)
         : [];
 
-    // 🔥 FIX OLD DATA MIGRATION (important)
+    // migration fix
     AppState.historyStack.items.forEach(log => {
-
         if (!log.type) {
-
-            if (log.action === "LOGIN" || log.action === "LOGOUT") {
-                log.type = "AUTH";
-            } else {
-                log.type = "PACKAGE";
-            }
+            log.type = (log.action === "LOGIN" || log.action === "LOGOUT")
+                ? "AUTH"
+                : "PACKAGE";
         }
     });
 }
 
-export function savePackages() {
+export function syncStorage() {
 
     localStorage.setItem(
         STORAGE_KEY,
