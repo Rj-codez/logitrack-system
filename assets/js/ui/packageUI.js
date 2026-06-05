@@ -13,8 +13,6 @@ export function loadAllPackages() {
 
     console.log("loadAllPackages running");
 
-    initState();
-    
     const table = document.querySelector("table");
     const searchInput = document.getElementById("packageSearchInput");
 
@@ -25,11 +23,6 @@ export function loadAllPackages() {
         : "";
 
     const packages = getFilteredPackages(searchValue);
-
-    console.log("RENDER PACKAGES:", packages);
-
-    console.log("STATE PACKAGES:", AppState.packages);
-    console.log("FILTERED PACKAGES:", packages);
 
     let rows = `
         <tr>
@@ -42,7 +35,6 @@ export function loadAllPackages() {
     `;
 
     Object.entries(packages).forEach(([tracking, pkg]) => {
-
         rows += `
             <tr>
                 <td>${tracking}</td>
