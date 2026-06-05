@@ -41,13 +41,13 @@ function handleRouteProtection() {
 
     const page = window.location.pathname;
 
-    const isLoginPage = page.includes("01-login.html");
+    const isLoginPage = page.includes("index.html");
     const isDashboard = page.includes("02-dashboard.html");
 
     const validSession = isSessionValid();
 
     if (!validSession && isDashboard) {
-        window.location.replace("01-login.html");
+        window.location.replace("index.html");
         return;
     }
 
@@ -129,7 +129,7 @@ window.logout = function () {
     sessionStorage.removeItem("isLoggedIn");
     sessionStorage.removeItem("loginTime");  
 
-    window.location.replace("01-login.html");
+    window.location.replace("index.html");
 };
 
 
@@ -326,7 +326,7 @@ function startSessionWatcher() {
 
             alert("Session expired. Please login again.");
 
-            window.location.replace("01-login.html");
+            window.location.replace("index.html");
         }
 
     }, 10000); // check every 10 seconds
