@@ -6,7 +6,7 @@ import { showToast } from "./ui/toastUI.js";
 
 import { renderLogs, loadHistory, clearAuthLogs , renderRecentUpdates} from "./ui/historyUI.js";
 
-import { initState } from "./core/storage.js";
+import { initState, syncStorage } from "./core/storage.js";
 import { AppState } from "./core/state.js";
 
 import { renderPackageCard } from "./ui/packageUI.js";
@@ -77,7 +77,7 @@ function setupAuth() {
                     timestamp: Date.now()
                 });
 
-                savePackages();
+                syncStorage();
 
                 showLoginFeedback(
                     "success",
