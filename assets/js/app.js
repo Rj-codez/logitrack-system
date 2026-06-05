@@ -1,4 +1,5 @@
 
+console.log("🔥 APP.JS LOADED");
 import { loadAllPackages, updateFilterTitle, copyTracking } from "./ui/packageUI.js";
 import { updateDashboard } from "./ui/dashboardUI.js";
 
@@ -396,3 +397,7 @@ function initPage() {
         loadHistory();
     }
 }
+
+window.addEventListener("pageshow", () => {
+    initPage();
+});
