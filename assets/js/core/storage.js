@@ -1,4 +1,5 @@
 import { AppState } from "./state.js";
+const savedQueue = localStorage.getItem("logitrack_queue");
 
 const STORAGE_KEY = "logitrack_packages";
 const HISTORY_KEY = "logitrack_history";
