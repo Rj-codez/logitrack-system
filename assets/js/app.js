@@ -361,13 +361,7 @@ function initPage() {
 }
 
 
-let isBooting = false;
-
 function boot() {
-
-    if (isBooting) return;
-
-    isBooting = true;
 
     console.log("🚀 BOOT START");
 
@@ -378,13 +372,17 @@ function boot() {
     setupUIEvents();
     initPage();
     startSessionWatcher();
-
-    isBooting = false;
 }
 
-document.addEventListener("DOMContentLoaded", boot);
-
-window.addEventListener("pageshow", () => {
-    console.log("🔁 pageshow triggered");
+document.addEventListener("DOMContentLoaded", () => {
     boot();
+});
+
+window.addEventListener("pageshow", (e) => {
+
+    // only re-run if navigation restore OR back/forward cache
+    if (e.persisted || performance.getEntriesByType("navigation")[0]?.type === "back_forward") {
+        console.log("🔁 pageshow restore detected");
+        boot();
+    }
 });
