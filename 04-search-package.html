@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Package</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/forms.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="form-box">
+        <a href="02-dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+        <h1>🔍 Search Package</h1>
+        <p>Search using a tracking number</p>
+
+        <div class="input-group">
+            <label>Tracking Number</label>
+            <input id="searchTrackingNumber"
+                type="text" 
+                placeholder="PKG1001">
+        </div>
+
+        <button id="searchBtn" class="btn">
+              Search Package
+        </button>   
+
+        <div id="searchResult"></div>
+    </div>
+
+</div>
+<div id="toast" class="toast"></div>
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

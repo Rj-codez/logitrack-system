@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Package</title>
+
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/forms.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="form-box">
+
+        <a href="02-dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+        <h1>📦 Add New Package</h1>
+        <p>Fill in the package details below</p>
+
+        <form id="addPackageForm">
+
+            <div class="input-group">
+                <label>Tracking Number</label>
+                <input id="trackingNumber" type="text" placeholder="PKG1001" required>
+            </div>
+
+            <div class="input-group">
+                <label>Sender Name</label>
+                <input id="senderName" type="text" placeholder="Enter sender name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Receiver Name</label>
+                <input id="receiverName" type="text" placeholder="Enter receiver name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Location</label>
+                <input id="location" type="text" placeholder="Enter location" required>
+            </div>
+
+            <div class="input-group">
+                <label>Status</label>
+
+                <select id="status" required>
+                    <option value="Pending">Pending</option>
+                    <option value="In Transit">In Transit</option>
+                    <option value="Delivered">Delivered</option>
+                </select>
+
+            </div>
+
+            <button type="submit" class="btn">
+                Add Package
+            </button>
+
+        </form>
+
+    </div>
+    <div id="toast" class="toast"></div>
+</div>
+<script type="module" src="assets/js/app.js"></script>
+
+</body>
+</html>

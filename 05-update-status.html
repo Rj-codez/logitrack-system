@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Update Status</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/forms.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="form-box">
+
+        <a href="02-dashboard.html" class="back-btn">
+            ← Back to Dashboard
+         </a>
+
+        <h1>✏️ Update Package Status</h1>
+        <p>Update delivery progress</p>
+
+        <div class="input-group">
+            <label>Tracking Number</label>
+
+            <input 
+            id="updateTrackingNumber"
+            type="text"
+            placeholder="PKG1001">
+        </div>
+
+        <div class="input-group">
+            <label>New Status</label>
+
+            <select id="newStatus">
+                <option>Pending</option>
+                <option>In Transit</option>
+                <option>Delivered</option>
+
+            </select>
+        </div>
+
+        <button id="updateBtn" class="btn">
+             Update Status
+        </button>
+
+    </div>
+
+</div>
+<div id="toast" class="toast"></div>
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

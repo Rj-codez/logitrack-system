@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | LogiTrack</title>
+
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo-box">
+            <img src="assets/images/newlogo.png" alt="LogiTrack Logo">
+            <h2></h2>
+        <p>Package System</p>
+    </div>
+
+
+    <ul class="nav-links">
+
+        <li class="active">
+            <a href="02-dashboard.html">
+                <i class="fas fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="03-add-package.html">
+                <i class="fas fa-plus"></i>
+                Add Package
+            </a>
+        </li>
+
+        <li>
+            <a href="04-search-package.html">
+                <i class="fas fa-search"></i>
+                Search Package
+            </a>
+        </li>
+
+        <li>
+            <a href="05-update-status.html">
+                <i class="fas fa-pen"></i>
+                Update Status
+            </a>
+        </li>
+
+        <li>
+            <a href="#" onclick="showAllPackages()">
+                <i class="fas fa-box"></i>
+                All Packages
+            </a>
+        </li>
+
+        <li>
+            <a href="07-history.html">
+                <i class="fas fa-clock"></i>
+                Tracking History
+            </a>
+        </li>
+
+        <li>
+            <a href="08-delete-packages.html">
+                <i class="fas fa-trash"></i>
+                Delete Package
+            </a>
+        </li>
+
+        <li>
+             <a href="#" onclick="logout()">
+                <i class="fas fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- MAIN -->
+<div class="main-content">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+
+        <div class="admin-banner">
+
+
+    <div class="banner-content">
+
+        <h2>LogiTrack Admin Panel</h2>
+
+        <p class="banner-text">
+            Manage package records, track deliveries,
+            and monitor logistics operations efficiently.
+        </p>
+
+    </div>
+
+</div>
+    </div>
+    <!-- STATS CARDS -->
+    <div class="cards">
+
+        <div class="card" onclick="filterPackages('all')">
+            <i class="fas fa-box"></i>
+            <h3>Total Packages</h3>
+            <p id="totalCount">0</p>
+        </div>
+
+        <div class="card" onclick="filterPackages('In Transit')">
+            <i class="fas fa-truck"></i>
+            <h3>In Transit</h3>
+            <p id="transitCount">0</p>
+        </div>
+
+        <div class="card" onclick="filterPackages('Delivered')">
+            <i class="fas fa-check-circle"></i>
+            <h3>Delivered</h3>
+            <p id="deliveredCount">0</p>        
+        </div>
+
+        <div class="card" onclick="filterPackages('Pending')">
+            <i class="fas fa-clock"></i>
+            <h3>Pending</h3>
+            <p id="pendingCount">0</p>
+        </div>
+
+    </div>
+
+    <!-- RECENT -->
+    <div class="recent-section">
+
+        
+         <h2>Recent Updates</h2>
+
+         <ul id="recentUpdatesList"></ul>
+
+    </div>
+
+     <!-- RECENT ACTIVITY -->
+    <div class="activity-log">
+        <button id="clearActivityBtn" class="clear-btn">
+            Clear Activity
+        </button>
+
+        <h2>Recent Activity</h2>
+
+        <div class="activity-box">
+            <ul id="logList"></ul>
+    </div>
+    
+</div>
+</div>
+
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

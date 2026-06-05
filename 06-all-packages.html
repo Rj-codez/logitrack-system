@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Packages</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+
+<div class="main-content">
+
+    <div class="recent-section">
+         <a href="02-dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+        <div class="section-title">
+            <h2 id="filterTitle">All Packages</h2>
+            <p>View all stored package records</p>
+        </div>
+
+            <div class="search-bar">
+                 <input type="text" id="packageSearchInput" placeholder="Search tracking number...">
+             </div>
+
+        <div class="table-wrapper">
+
+            <table class="packages-table">
+
+                <thead>
+                    <tr>
+                        <th>Tracking No.</th>
+                        <th>Sender</th>
+                        <th>Receiver</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="5" class="empty-message">
+                            No package records available.
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
