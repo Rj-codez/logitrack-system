@@ -13,9 +13,13 @@ export function initState() {
 
     const savedHistory = localStorage.getItem(HISTORY_KEY);
 
-    AppState.historyStack.items = savedHistory
-        ? JSON.parse(savedHistory)
-        : [];
+    AppState.historyStack.setItems(
+        savedHistory ? JSON.parse(savedHistory) : []
+    );
+
+    AppState.packageQueue.setItems(
+        savedQueue ? JSON.parse(savedQueue) : []
+    );
 
     // migration fix
     AppState.historyStack.items.forEach(log => {
