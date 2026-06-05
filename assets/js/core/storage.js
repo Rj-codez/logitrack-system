@@ -7,12 +7,12 @@ const HISTORY_KEY = "logitrack_history";
 export function initState() {
 
     const savedPackages = localStorage.getItem(STORAGE_KEY);
+    const savedHistory = localStorage.getItem(HISTORY_KEY);
+    const savedQueue = localStorage.getItem("logitrack_queue");
 
     AppState.packages = savedPackages
         ? JSON.parse(savedPackages)
         : {};
-
-    const savedHistory = localStorage.getItem(HISTORY_KEY);
 
     AppState.historyStack.setItems(
         savedHistory ? JSON.parse(savedHistory) : []
@@ -42,6 +42,11 @@ export function syncStorage() {
     localStorage.setItem(
         HISTORY_KEY,
         JSON.stringify(AppState.historyStack.items)
+    );
+
+    localStorage.setItem(
+        "logitrack_queue",
+        JSON.stringify(AppState.packageQueue.items)
     );
 }
 
