@@ -1,7 +1,6 @@
 import { AppState } from "../core/state.js";
+import { savePackages } from "../core/storage.js";
 import { showToast } from "../ui/toastUI.js";
-import { syncStorage } from "../core/storage.js";
-import { renderApp } from "../core/render.js";
 
 export function getQueue() {
     return AppState.packageQueue.getAll();
@@ -32,9 +31,8 @@ export function processNextPackage() {
         timestamp: Date.now()
     });
 
-    syncStorage();
-    renderApp();
-    
+    savePackages();
+
     return next;
 }
 
@@ -71,15 +69,16 @@ export function addPackage(pkg) {
         timestamp: Date.now()
     });
 
-        syncStorage();
-        renderApp();   // 🔥 THIS IS THE MISSING PIECE
-        
-        showToast(
-            `Package ${trackingNumber} added successfully`,
-            "success"
-        );
+    // 💾 5. SAVE TO LOCALSTORAGE
+    savePackages();
 
-return true;
+    // 🎉 6. SUCCESS FEEDBACK
+    showToast(
+        `Package ${trackingNumber} added successfully`,
+        "success"
+    );
+
+    return true;
 }
 
 export function updateStatus(trackingNumber, newStatus) {
@@ -105,8 +104,7 @@ export function updateStatus(trackingNumber, newStatus) {
         timestamp: Date.now()
     });
 
-    syncStorage();
-    renderApp();   
+    savePackages();
 
     return true;
 }
@@ -128,9 +126,8 @@ export function deletePackage(trackingNumber) {
 
     delete AppState.packages[trackingNumber];
 
-    syncStorage();
-    renderApp(); 
-    
+    savePackages();
+
     return true; // ✅ SUCCESS
 }
 
