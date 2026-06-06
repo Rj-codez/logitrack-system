@@ -375,3 +375,10 @@ function showLoginFeedback(type, message) {
 
     text.textContent = message;
 }
+
+window.addEventListener("pageshow", (e) => {
+    if (e.persisted) {
+        console.log("♻️ pageshow restore detected");
+        boot();
+    }
+});
