@@ -24,6 +24,7 @@ const SESSION_DURATION = 500 * 60 * 1000; // 30 minutes
 let packageToDelete = null;
 
 let booted = false;
+
 function boot() {
 
     if (booted) return;
