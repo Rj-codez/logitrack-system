@@ -18,24 +18,29 @@ import {
     deletePackage
 } from "./services/packageService.js";
 
+let booted = false;
+
 const SESSION_DURATION = 500 * 60 * 1000; // 30 minutes
 
 let packageToDelete = null;
 
-document.addEventListener("DOMContentLoaded", () => {
+function boot() {
+
+    if (booted) return;
+    booted = true;
+
+    console.log("🚀 BOOT START");
 
     initState();
-
     handleRouteProtection();
-
     setupAuth();
     setupPackageEvents();
     setupUIEvents();
-
     initPage();
-
     startSessionWatcher();
-});
+}
+
+document.addEventListener("DOMContentLoaded", boot);
 
 function handleRouteProtection() {
 
