@@ -1,37 +1,38 @@
 import { AppState } from "./state.js";
 
+
 const STORAGE_KEY = "logitrack_packages";
 const HISTORY_KEY = "logitrack_history";
 
 export function initState() {
 
     const savedPackages = localStorage.getItem(STORAGE_KEY);
-    const savedHistory = localStorage.getItem(HISTORY_KEY);
-    const savedQueue = localStorage.getItem("logitrack_queue");
 
     AppState.packages = savedPackages
         ? JSON.parse(savedPackages)
         : {};
 
-    AppState.historyStack.setItems(
-        savedHistory ? JSON.parse(savedHistory) : []
-    );
+    const savedHistory = localStorage.getItem(HISTORY_KEY);
 
-    AppState.packageQueue.setItems(
-        savedQueue ? JSON.parse(savedQueue) : []
-    );
+    AppState.historyStack.items = savedHistory
+        ? JSON.parse(savedHistory)
+        : [];
 
-    // migration fix
+    // 🔥 FIX OLD DATA MIGRATION (important)
     AppState.historyStack.items.forEach(log => {
+
         if (!log.type) {
-            log.type = (log.action === "LOGIN" || log.action === "LOGOUT")
-                ? "AUTH"
-                : "PACKAGE";
+
+            if (log.action === "LOGIN" || log.action === "LOGOUT") {
+                log.type = "AUTH";
+            } else {
+                log.type = "PACKAGE";
+            }
         }
     });
 }
 
-export function syncStorage() {
+export function savePackages() {
 
     localStorage.setItem(
         STORAGE_KEY,
@@ -41,11 +42,6 @@ export function syncStorage() {
     localStorage.setItem(
         HISTORY_KEY,
         JSON.stringify(AppState.historyStack.items)
-    );
-
-    localStorage.setItem(
-        "logitrack_queue",
-        JSON.stringify(AppState.packageQueue.items)
     );
 }
 
