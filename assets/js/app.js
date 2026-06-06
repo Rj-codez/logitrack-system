@@ -377,8 +377,9 @@ function showLoginFeedback(type, message) {
 }
 
 window.addEventListener("pageshow", (e) => {
-    if (e.persisted) {
-        console.log("♻️ pageshow restore detected");
-        boot();
-    }
+    console.log("pageshow fired");
+
+    // DO NOT re-run full boot
+    // ONLY re-render UI if needed
+    initPage();
 });
