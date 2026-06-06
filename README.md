@@ -51,25 +51,45 @@ Automatic state initialization on load
 
 🏗️ Project Structure
 LogiTrack/
+
 │
+
 ├── index.html
+
 ├── 02-dashboard.html
+
 ├── 03-add-package.html
+
 ├── 04-search-package.html
+
 ├── 05-update-status.html
+
 ├── 06-all-packages.html
+
 ├── 07-history.html
+
 ├── 08-delete-packages.html
+
 │
+
 ├── assets/
+
 │   ├── css/
+
 │   ├── js/
+
 │   │   ├── app.js
+
 │   │   ├── core/
+
 │   │   ├── ui/
+
 │   │   └── services/
+
 │   └── images/
+
 │
+
 └── README.md
 
 
