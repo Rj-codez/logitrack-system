@@ -13,7 +13,6 @@ export function loadAllPackages() {
 
     console.log("loadAllPackages running");
 
-    initState();
     
     const table = document.querySelector("table");
     const searchInput = document.getElementById("packageSearchInput");
