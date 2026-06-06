@@ -6,7 +6,7 @@ LogiTrack is a lightweight web-based package tracking and logistics management s
 
 🚀 Live Demo
 
-logitrack-system.vercel.app
+https://logitrack-system.vercel.app
 
 
 📌 Features
