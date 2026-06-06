@@ -29,9 +29,11 @@ Delivered count
 Pending count
 Real-time updates from application state
 
-🧠 Data Structures Used
+🧠 Data Structures Used:
+
 Hash Table (JavaScript Object)
 Used as the primary data structure for storing and retrieving package records using tracking numbers as unique keys. This enables constant-time lookup, insertion, and deletion operations.
+
 Queue (FIFO) → Package processing flow
 Stack (LIFO) → History and activity logs
 Centralized AppState for data management
