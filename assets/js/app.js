@@ -1,5 +1,4 @@
 
-console.log("🔥 APP.JS LOADED");
 import { loadAllPackages, updateFilterTitle, copyTracking } from "./ui/packageUI.js";
 import { updateDashboard } from "./ui/dashboardUI.js";
 
@@ -7,7 +6,7 @@ import { showToast } from "./ui/toastUI.js";
 
 import { renderLogs, loadHistory, clearAuthLogs , renderRecentUpdates} from "./ui/historyUI.js";
 
-import { initState, syncStorage } from "./core/storage.js";
+import { initState, savePackages } from "./core/storage.js";
 import { AppState } from "./core/state.js";
 
 import { renderPackageCard } from "./ui/packageUI.js";
@@ -23,6 +22,20 @@ const SESSION_DURATION = 500 * 60 * 1000; // 30 minutes
 
 let packageToDelete = null;
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    initState();
+
+    handleRouteProtection();
+
+    setupAuth();
+    setupPackageEvents();
+    setupUIEvents();
+
+    initPage();
+
+    startSessionWatcher();
+});
 
 function handleRouteProtection() {
 
@@ -64,7 +77,7 @@ function setupAuth() {
                     timestamp: Date.now()
                 });
 
-                syncStorage();
+                savePackages();
 
                 showLoginFeedback(
                     "success",
@@ -111,10 +124,10 @@ window.logout = function () {
         timestamp: Date.now()
     });
 
-    syncStorage(); // ✅ FIXED
+    savePackages();
 
     sessionStorage.removeItem("isLoggedIn");
-    sessionStorage.removeItem("loginTime");
+    sessionStorage.removeItem("loginTime");  
 
     window.location.replace("index.html");
 };
@@ -273,6 +286,30 @@ function setupUIEvents() {
     });
 }
 
+function initPage() {
+
+    console.log("Current page:", window.location.pathname);
+
+    const page = window.location.pathname;
+
+    // Dashboard
+    if (page.includes("02-dashboard.html")) {
+        updateDashboard();
+        renderLogs();
+        renderRecentUpdates();
+    }
+
+    // All Packages
+    if (page.includes("06-all-packages.html")) {
+        loadAllPackages();
+        updateFilterTitle();
+    }
+    //History load
+    if (page.includes("07-history.html")) {
+    loadHistory();
+    }
+}
+
 function startSessionWatcher() {
 
     setInterval(() => {
@@ -332,57 +369,3 @@ function showLoginFeedback(type, message) {
 
     text.textContent = message;
 }
-
-function initPage() {
-
-    console.log("INIT PAGE RUNNING");
-
-    const page = window.location.pathname;
-
-    console.log("CURRENT PAGE:", page);
-
-    if (page.includes("02-dashboard.html")) {
-
-        console.log("DASHBOARD DETECTED");
-
-        updateDashboard();
-        renderLogs();
-        renderRecentUpdates();
-    }
-
-    if (page.includes("06-all-packages.html")) {
-        loadAllPackages();
-        updateFilterTitle();
-    }
-
-    if (page.includes("07-history.html")) {
-        loadHistory();
-    }
-}
-
-
-function boot() {
-
-    console.log("🚀 BOOT START");
-
-    initState();
-    handleRouteProtection();
-    setupAuth();
-    setupPackageEvents();
-    setupUIEvents();
-    initPage();
-    startSessionWatcher();
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    boot();
-});
-
-window.addEventListener("pageshow", (e) => {
-
-    // only re-run if navigation restore OR back/forward cache
-    if (e.persisted || performance.getEntriesByType("navigation")[0]?.type === "back_forward") {
-        console.log("🔁 pageshow restore detected");
-        boot();
-    }
-});
